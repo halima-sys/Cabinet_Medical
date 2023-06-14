@@ -1,24 +1,42 @@
 package ma.enset.CabinetMedical.repositories;
 
 import ma.enset.CabinetMedical.entities.Consultation;
+import ma.enset.CabinetMedical.entities.Medecin;
 import ma.enset.CabinetMedical.entities.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface ConsultationRepository extends JpaRepository<Consultation, Long> {
-    List<Consultation> findConsultationsByMedecinContainsOrPatientContains(String mc1, String mc2);
+    static List<Consultation> findConsultationsByMedecin(String valueOf) {
+        return null;
+    }
 
-    List<Consultation> findConsultationByPatient(Patient patient);
+    static List<Consultation> findConsultationsByPatient(String mc) {
+        return null;
+    }
 
-    List<Consultation> findConsultationsByMedecin(String query);
+    static List<Consultation> findConsultationByPatient(Patient patient) {
+        return null;
+    }
 
-    //List<Consultation> findConsultationByPatient(Patient patient);
+    List<Consultation> findByMedecin(Medecin medecin);
 
-    //List<Consultation> findConsultationsByMedecinContainsOrPatientContains(String query, String query1, String query2);
+    List<Consultation> findByPatient(Patient patient);
 
-    //List<Consultation> findConsultationByMedecin(Medecin medecin);
-    // List<Consultation> findConsultationByPatient(Patient patient);
-    // List<Consultation> findConsultationByMedecin(Medecin medecin);
+    List<Consultation> findByMedecinNomContaining(String medecin_nom);
 
+    //static List<Consultation> findConsultationsByMedecin(String Medecin_nom){
+    //return ConsultationRepository.findByMedecinNomContaining(Medecin_nom);
 }
+
+
+//List<Consultation> findConsultationByPatient(Patient patient);
+
+//List<Consultation> findConsultationsByMedecinContainsOrPatientContains(String query, String query1, String query2);
+
+//List<Consultation> findConsultationByMedecin(Medecin medecin);
+// List<Consultation> findConsultationByPatient(Patient patient);
+// List<Consultation> findConsultationByMedecin(Medecin medecin);
+
+

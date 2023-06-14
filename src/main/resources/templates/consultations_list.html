@@ -19,15 +19,12 @@
 
     </form>
     <a class="btn btn-success" href="/addConsultation">Nouveau</a>
-    <!--<div th:each="p:${patients}">
-    <h1 th:text="${p.id+' '+p.nom+' '+p.prenom+' '+p.cin+' '+p.tel+' '+p.email+' '+p.dateNaissance}"></h1>
-    </div>-->
     <table class="table table-bordred table-hover table-stripped">
         <tr class="bg-light">
             <th>ID</th>
             <th>Date Consultation</th>
             <th>Déscription</th>
-            <th>Medecin</th>
+            <th>Doctor</th>
             <th>Patient</th>
             <th>Action</th>
         </tr>
@@ -35,8 +32,9 @@
             <td th:text="${c.id}"></td>
             <td th:text="${c.dateConsultation}"></td>
             <td th:text="${c.description}"></td>
-            <td th:text="${c.medecin}"></td>
-            <td th:text="${c.patient}"></td>
+            <td th:text="${c.medecin.nom}"></td>
+            <td th:text="${c.patient.nom}"></td>
+            <!-- Add more columns as needed -->
             <td><a th:href="@{/deleteConsultation(id=${c.id})}">Supprimer</a></td>
         </tr>
     </table>

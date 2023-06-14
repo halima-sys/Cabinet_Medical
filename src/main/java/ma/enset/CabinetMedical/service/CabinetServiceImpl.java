@@ -45,7 +45,7 @@ public class CabinetServiceImpl implements ICabinetService {
 
     @Override
     public List<Consultation> getConsultationsByPatient(Patient patient) {
-        return consultationRepository.findConsultationByPatient(patient);
+        return ConsultationRepository.findConsultationByPatient(patient);
     }
 
     @Override
@@ -68,6 +68,7 @@ public class CabinetServiceImpl implements ICabinetService {
     public List<Consultation> getConsultationsByMedecin(Medecin medecin) {
         return null;
     }
+
 
     @Override
     public void addConsultation(Consultation consultation) {
@@ -109,19 +110,29 @@ public class CabinetServiceImpl implements ICabinetService {
 
     }
 
+    /**
+     * @param mc
+     * @return
+     */
     @Override
-    public List<Consultation> searchConsultationsByQuery(String Query) {
-        return consultationRepository.findConsultationsByMedecin(Query);
-    }
-
-
-    @Override
-    public List<Consultation> searchConsultationsByMedecin(String mc) {
+    public List<Consultation> searchConsultationsByQuery(String mc) {
         return null;
     }
 
     @Override
-    public List<Consultation> searchConsultationsByPatient(String mc) {
+    public List<Consultation> searchConsultationsByQuery(Medecin Query) {
+        return ConsultationRepository.findConsultationsByMedecin(String.valueOf(Query));
+    }
+
+
+    @Override
+    public List<Consultation> searchConsultationsByMedecin(String co) {
         return null;
     }
+
+    @Override
+    public List<Consultation> searchConsultationsByPatient(String co) {
+        return null;
+    }
+
 }

@@ -43,6 +43,8 @@ public interface ICabinetService {
 
     List<Consultation> searchConsultationsByQuery(String mc);
 
+    List<Consultation> searchConsultationsByQuery(Medecin Query);
+
     List<Consultation> searchConsultationsByMedecin(String mc);
 
     List<Consultation> searchConsultationsByPatient(String mc);

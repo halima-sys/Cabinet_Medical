@@ -79,18 +79,12 @@ public class CabinetController {
         return "redirect:/medecins";
     }
 
-    @GetMapping
-    public String getAllConsultations(Model model) {
-        List<Consultation> consultations = cabinetService.searchConsultationsByQuery(mc);
-        model.addAttribute("consultations", consultationRepository.findAll());
-        return "consultations-list";
-    }
-
     @GetMapping(path = "/consultations")
     public String consultations(Model model, @RequestParam(name = "mc", defaultValue = "") String mc) {
-        List<Consultation> consultations = cabinetService.searchConsultationsByQuery(mc);
+        List<Consultation> consultations = cabinetService.searchConsultationsByMedecin(mc);
+        System.out.println("Consultations: " + consultations);
         //Stocker une donnée dans le modèle
-        model.addAttribute("consultation", consultations);
+        model.addAttribute("consultations", consultations);
         return "consultations_list";
     }
 
@@ -103,12 +97,23 @@ public class CabinetController {
     @GetMapping(path = "/addConsultation")
     public String consultationForm(Model model) {
         Consultation c = new Consultation();
+        List<Medecin> medecins = cabinetService.getAllMedecin();
+        List<Patient> patients = cabinetService.getAllPatients();
+
         model.addAttribute("consultation", c);
+        model.addAttribute("medecins", medecins);
+        model.addAttribute("patients", patients);
         return "consultation_new";
     }
 
     @PostMapping(path = "/saveConsultation")
-    public String saveConsultation(@ModelAttribute Consultation consultation) {
+    public String saveConsultation(@ModelAttribute Consultation consultation, @RequestParam(name = "medecinId") Long medecinId,
+                                   @RequestParam(name = "patientId") Long patientId) {
+        Medecin medecin = cabinetService.getMedecinById(medecinId);
+        Patient patient = cabinetService.getPatientById(patientId);
+
+        consultation.setMedecin(medecin);
+        consultation.setPatient(patient);
         cabinetService.addConsultation(consultation);
         return "redirect:/consultations";
     }
