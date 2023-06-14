@@ -29,7 +29,8 @@ public class CabinetServiceImpl implements ICabinetService {
 
     @Override
     public List<Patient> searchPatientsByQuery(String Query) {
-        return null;//patientRepository.findPatientsByNomContainsOrPrenomContainsOrEmailContainsOrCinContains(Query);
+        //return null;
+        return patientRepository.findPatientsByNomContainsOrPrenomContainsOrEmailContainsOrCinContains(Query, Query, Query, Query);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class CabinetServiceImpl implements ICabinetService {
 
     @Override
     public List<Consultation> getConsultationsByPatient(Patient patient) {
-        return null; //consultationRepository.findConsultationByPatient(patient);
+        return consultationRepository.findConsultationByPatient(patient);
     }
 
     @Override
@@ -62,9 +63,10 @@ public class CabinetServiceImpl implements ICabinetService {
         medecinRepository.deleteById(id);
     }
 
+
     @Override
     public List<Consultation> getConsultationsByMedecin(Medecin medecin) {
-        return null; //consultationRepository.findConsultationByMedecin(medecin);
+        return null;
     }
 
     @Override
@@ -95,5 +97,31 @@ public class CabinetServiceImpl implements ICabinetService {
     @Override
     public Consultation getConsultationById(Long id) {
         return consultationRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Medecin> searchMedecinsByQuery(String Query) {
+        return medecinRepository.findMedecinsByNomContainsOrPrenomContainsOrEmailContains(Query, Query, Query);
+    }
+
+    @Override
+    public void deleteConsultationById(Long id) {
+
+    }
+
+    @Override
+    public List<Consultation> searchConsultationsByQuery(String Query) {
+        return consultationRepository.findConsultationsByMedecin(Query);
+    }
+
+
+    @Override
+    public List<Consultation> searchConsultationsByMedecin(String mc) {
+        return null;
+    }
+
+    @Override
+    public List<Consultation> searchConsultationsByPatient(String mc) {
+        return null;
     }
 }

@@ -36,6 +36,16 @@ public interface ICabinetService {
     Patient getPatientById(Long id);
 
     Consultation getConsultationById(Long id);
+
+    List<Medecin> searchMedecinsByQuery(String mc);
+
+    void deleteConsultationById(Long id);
+
+    List<Consultation> searchConsultationsByQuery(String mc);
+
+    List<Consultation> searchConsultationsByMedecin(String mc);
+
+    List<Consultation> searchConsultationsByPatient(String mc);
 }
 
 

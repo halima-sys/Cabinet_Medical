@@ -1,6 +1,7 @@
 package ma.enset.CabinetMedical.entities;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -24,6 +25,7 @@ public class Patient {
     private String cin;
     private String tel;
     private String email;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
     @OneToMany(mappedBy = "patient")
