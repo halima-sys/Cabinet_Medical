@@ -18,6 +18,7 @@
                type="date">
         <label class="form-label" for="Description">Description</label>
         <input class="form-control" id="Description" name="Description" th:field="*{Description}" type="text">
+
         <label for="medecinId">Medecin</label>
         <select class="form-control" id="medecinId" name="medecinId">
             <option th:each="medecin : ${medecins}"

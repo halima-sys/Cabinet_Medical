@@ -37,7 +37,7 @@ public class CabinetMedicalApplication implements CommandLineRunner {
 		cabinetService.addConsultation(c1);*/
 
 		Consultation c2 = cabinetService.getConsultationById(7L);
-		System.out.println(c2.getDescription() + " " + c2.getMedecin().getNom() + " " + c2.getMedecin().getPrenom() + " " + c2.getPatient().getNom() + " " + c2.getPatient().getPrenom());
+		//System.out.println(c2.getDescription() + " " + c2.getMedecin().getNom() + " " + c2.getMedecin().getPrenom() + " " + c2.getPatient().getNom() + " " + c2.getPatient().getPrenom());
 
 		//Medecin m1=new Medecin(null,"skalli","amine","skalli@gmail.com","066115930",null);
 		//cabinetService.addMedecin(m1);

@@ -13,10 +13,9 @@
 <body>
 <div layout:fragment="content">
     <form action="/consultations" method="get">
-        <label for="mc">Mot clé</label>
-        <input id="mc" name="mc" type="search">
+        <label for="medecin_nom">Mot clé</label>
+        <input id="medecin_nom" name="medecin_nom" type="search">
         <input class="btn btn-primary mb-2 mt-2" type="submit" value="Rechercher">
-
     </form>
     <a class="btn btn-success" href="/addConsultation">Nouveau</a>
     <table class="table table-bordred table-hover table-stripped">
@@ -24,9 +23,10 @@
             <th>ID</th>
             <th>Date Consultation</th>
             <th>Déscription</th>
-            <th>Doctor</th>
+            <th>Medecin</th>
             <th>Patient</th>
             <th>Action</th>
+        </tr>
         </tr>
         <tr th:each="c:${consultations}">
             <td th:text="${c.id}"></td>
@@ -34,7 +34,6 @@
             <td th:text="${c.description}"></td>
             <td th:text="${c.medecin.nom}"></td>
             <td th:text="${c.patient.nom}"></td>
-            <!-- Add more columns as needed -->
             <td><a th:href="@{/deleteConsultation(id=${c.id})}">Supprimer</a></td>
         </tr>
     </table>

@@ -9,5 +9,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     List<Patient> findPatientsByNomContainsOrPrenomContainsOrEmailContainsOrCinContains(String mc1, String mc2, String mc3, String mc4);
 
+    List<Patient> findPatientsByNomContainsOrPrenomContains(String query, String query1);
+
     // List<Patient> findPatientsByNomContains(String query);
 }

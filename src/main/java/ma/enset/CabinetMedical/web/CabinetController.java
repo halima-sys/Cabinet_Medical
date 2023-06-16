@@ -79,10 +79,10 @@ public class CabinetController {
         return "redirect:/medecins";
     }
 
+
     @GetMapping(path = "/consultations")
-    public String consultations(Model model, @RequestParam(name = "mc", defaultValue = "") String mc) {
-        List<Consultation> consultations = cabinetService.searchConsultationsByMedecin(mc);
-        System.out.println("Consultations: " + consultations);
+    public String consultations(Model model, @RequestParam(name = "medecin_nom", defaultValue = "") String medecin_nom) {
+        List<Consultation> consultations = cabinetService.searchConsultationsByMedecin(medecin_nom);
         //Stocker une donnée dans le modèle
         model.addAttribute("consultations", consultations);
         return "consultations_list";
@@ -97,7 +97,7 @@ public class CabinetController {
     @GetMapping(path = "/addConsultation")
     public String consultationForm(Model model) {
         Consultation c = new Consultation();
-        List<Medecin> medecins = cabinetService.getAllMedecin();
+        List<Medecin> medecins = cabinetService.getAllMedecins();
         List<Patient> patients = cabinetService.getAllPatients();
 
         model.addAttribute("consultation", c);
@@ -105,6 +105,31 @@ public class CabinetController {
         model.addAttribute("patients", patients);
         return "consultation_new";
     }
+
+    //
+    //@GetMapping(path = "/consultations")
+    //public String consultations(Model model, @RequestParam(name = "Querry", defaultValue = "") String Query) {
+    // List<Consultation> consultations= cabinetService.searchConsultationsById(Query);
+    //System.out.println("Consultations: " + consultations);
+    //Stocker une donnée dans le modèle
+    //model.addAttribute("consultations", consultations);
+    //return "consultations_list";}
+
+    //@GetMapping(path = "deleteConsultation")
+    // public String deleteConsultation(@RequestParam(name = "id", defaultValue = "0") Long id) {
+    //cabinetService.deleteConsultationById(id);
+    //return "redirect:/consultations";}
+
+    //@GetMapping(path = "/addConsultation")
+    // public String consultationForm(Model model) {
+    //Consultation c = new Consultation();
+    // List<Medecin> medecins = cabinetService.getAllMedecins();
+    // List<Patient> patients = cabinetService.getAllPatients();
+
+    //model.addAttribute("consultation", c);
+    //model.addAttribute("medecins", medecins);
+    //model.addAttribute("patients", patients);
+    //return "consultation_new";}
 
     @PostMapping(path = "/saveConsultation")
     public String saveConsultation(@ModelAttribute Consultation consultation, @RequestParam(name = "medecinId") Long medecinId,
@@ -117,4 +142,5 @@ public class CabinetController {
         cabinetService.addConsultation(consultation);
         return "redirect:/consultations";
     }
+
 }

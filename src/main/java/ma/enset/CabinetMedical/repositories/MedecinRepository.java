@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface MedecinRepository extends JpaRepository<Medecin, Long> {
-    List<Medecin> findMedecinsByNomContains(String query);
-
     List<Medecin> findMedecinsByNomContainsOrPrenomContainsOrEmailContains(String mc1, String mc2, String mc3);
+
+    List<Medecin> findMedecinsByNomContainsOrPrenomContains(String query, String query1);
+
+    // List<Medecin> findMedecinsByIdContains(String mc);
 }
